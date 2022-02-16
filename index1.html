@@ -14,9 +14,22 @@
             font-family: sans-serif;
             text-align: justify;
             font-size:x-large; 
+            
+            animation: backani 1s ease-in-out alternate infinite;
             height: 100vh;
         }
-        
+        @keyframes backani{
+        	
+        	0% {
+		background-position: 0% 10%;
+	}
+	50% {
+		background-position: 100% 0%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+        }
         
         #nav{
             margin:0px;
@@ -41,9 +54,9 @@
             height: 100px;
             margin-left:50%;
             -webkit-transform: translate(calc(-50%)); /* WebKit */
-	        -moz-transform: translate(calc(-50%)); /* Mozilla */
-	        -o-transform: translate(calc(-50%)); /* Opera */
-	        -ms-transform: translate(calc(-50%)); /* Internet Explorer */
+	    -moz-transform: translate(calc(-50%)); /* Mozilla */
+	    -o-transform: translate(calc(-50%)); /* Opera */
+	    -ms-transform: translate(calc(-50%)); /* Internet Explorer */
         }
         #dropdown{
             background-color: white;
@@ -130,6 +143,9 @@
             100%{scale: 2;}
         }
         
+        #section2{
+        
+        }
 
         #longimage{
             width:auto;
@@ -192,7 +208,9 @@
         		height: 10vh;
         		min-height:100px;
         	}
-        	
+        	#section1{
+        		
+        	}
         }
     </style>
     <script>
@@ -349,7 +367,6 @@
         <p style="text-align: center;max-width:80vw;margin:auto;margin-top:20px;">Himalayan Pheasant 2.0 is a Prototype concept battery-electric driven automobile. It is an augmented form of Himalayan Pheasant 1.0 that represented Nepal in Shell Eco-Marathon 2021 and secured 127th position making it a proud moment to celebrate. 
             Inspired and driven by the enthusiasm and commitment of Himalayan Pheasant 1.0, we are a team of multidisciplinary students working full-fledgedly to meet our vision and mission i.e to contribute to a sustainable future by building a vehicle that can travel more distance with a certain volume of fuel.   
         </p>
-        <a href="team.html">meet our team</a>
         <div id="arrow_container">
             <a href="#section3">
                 <span class="arrow"></span><br>

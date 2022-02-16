@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fly</title>
+    <style>
+        body{
+            overflow: hidden;
+        }
+        #bird{
+            
+            position: absolute;
+            /* animation: fly 5s ease; */
+        }
+        #bird img{
+            width: 200px;
+            height: 200px;
+        }
+        /* @keyframes fly{
+            0%{right:0px;top:0px;}
+            100%{top:40px;right:40px;}
+            /* 35%{rotate: -90deg;} */
+        } */
+    </style>
+
+    <script>
+        var start = 0;
+        var end = 0;
+        var interval = 0;
+        window.addEventListener('reached', function(){
+                end = Math.floor(Math.random() * window.innerHeight);
+                if(start < end){
+                    bird.style.rotate="235deg";
+                }else{
+                    bird.style.rotate="45deg";
+                }
+                interval = setInterval(() => {
+                    fly();
+                }, 30);
+                console.log("trr")
+            }, false);
+        window.onload = () => {
+            var bird = document.getElementById("bird");
+            var evt = new CustomEvent("reached");
+            console.log("dispatch")
+            window.dispatchEvent(evt);
+            
+        }
+        function fly(){
+            if(start != end){
+                if(start > end){
+                    var top = bird.offsetLeft - 1;
+                    var left = bird.offsetLeft - 1;
+                    start--;
+                }else if(start < end){
+                    var top = bird.offsetLeft + 1;
+                    var left = bird.offsetLeft + 1;
+                    start++;
+                }
+                bird.style.top = top + "px";
+                bird.style.left = left + "px";
+            }
+            else{
+                //Dispatch an event
+                clearInterval(interval);
+                var evt = new CustomEvent("reached");
+                console.log("dispatch")
+                window.dispatchEvent(evt);
+            }
+        }
+
+        function move(from , to){
+
+        }
+    </script>
+</head>
+<body>
+    <div id="bird">
+        <img src="media/image/bird_flying1.png" alt="">
+    </div>
+</body>
+</html>
