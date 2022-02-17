@@ -9,44 +9,56 @@
         body{
             overflow: hidden;
         }
-        #bird{
-            
+        .bird{
             position: absolute;
+            /* display: none; */
             /* animation: fly 5s ease; */
         }
-        #bird img{
+        .bird img{
             width: 200px;
             height: 200px;
         }
-        /* @keyframes fly{
-            0%{right:0px;top:0px;}
-            100%{top:40px;right:40px;}
-            /* 35%{rotate: -90deg;} */
-        } */
+
+        #bird1{
+            opacity: 0;
+        }
+        @keyframes flyLeft{
+            0%{right:-20vw;rotate: 0deg;}
+            1%{opacity: 1;}
+            99%{right:120vw;opacity: 1;}
+            100%{opacity: 0;}
+        }
+        @keyframes flyRight{
+            0%{left:-20vw;rotate: 180deg;}
+            1%{opacity: 1;}
+            99%{left:120vw;opacity: 1;}
+            100%{opacity: 0;rotate: 180deg;}
+        }
     </style>
 
     <script>
         var start = 0;
         var end = 0;
-        var interval = 0;
+        var interval = 0,intervalMove = 0;
+        var sumer = 0,x1 = 0,y1 = 0,x2,y2,dx,dy,m,c;
+        var flyAnimation = ['flyRight','flyLeft'];
         window.addEventListener('reached', function(){
-                end = Math.floor(Math.random() * window.innerHeight);
-                if(start < end){
-                    bird.style.rotate="235deg";
-                }else{
-                    bird.style.rotate="45deg";
-                }
-                interval = setInterval(() => {
-                    fly();
-                }, 30);
-                console.log("trr")
+                x2 = Math.floor(Math.random() * window.innerWidth * 2);
+                y2 = Math.floor(Math.random() * window.innerHeight * 2);
+                // interval = setInterval(() => {
+                //     fly();
+                // }, 30);
+                moveInLine();
+                // console.log("trr")
             }, false);
         window.onload = () => {
             var bird = document.getElementById("bird");
             var evt = new CustomEvent("reached");
-            console.log("dispatch")
+            // console.log("dispatch")
             window.dispatchEvent(evt);
-            
+            setInterval(() => {
+                randFly();
+            }, 5000);
         }
         function fly(){
             if(start != end){
@@ -66,18 +78,66 @@
                 //Dispatch an event
                 clearInterval(interval);
                 var evt = new CustomEvent("reached");
+                // console.log("dispatch")
+                window.dispatchEvent(evt);
+            }
+        }
+        
+        function moveInLine(){
+            // x1 = bird.offsetLeft;
+            // y1 = bird.offsetTop;
+            console.log("move from "+x1+","+y1+" to "+x2+","+y2+",")
+            dx = x2-x1;
+            dy = y2-y1;
+            // console.log("dx,dy="+dx+","+dy);
+            m = dy / dx;
+            var rotate = Math.floor(((Math.atan(m)) * 180 / 22 * 7) + 180);
+            console.log(rotate)
+            bird.style.rotate= rotate +"deg";   ///rad to degree + 180 to default point to right
+            c = y1 - Math.floor(m * x1);
+            if(dx < 0){
+                sumer = -1;
+            }else{
+                sumer = 1;
+            }
+            intervalMove = setInterval(() => {
+                actualMove();
+            }, 25);
+            
+        }
+        function actualMove(){
+            if(x1 != x2){
+                // console.log(x+","+y+",xend="+xend);
+                bird.style.top = y1 + "px";
+                bird.style.left = x1 + "px";
+                x1 = x1 + sumer;
+                y1 = Math.floor((m * x1) + c);
+            }else{
+                // clearInterval(interval);
+                clearInterval(intervalMove);
+                var evt = new CustomEvent("reached");
                 console.log("dispatch")
                 window.dispatchEvent(evt);
             }
         }
-
-        function move(from , to){
-
+        function randFly(){
+            // document.getElementsByClassName("bird1")[0].style.animation = "flyRight 4s ease";
+            // for(i = 0;i<3;i++){
+                var temp = Math.floor(Math.random() * 1000) % 400;
+                document.getElementById('bird1').style.width = temp + "px";
+                document.getElementById('bird1').style.height = temp + "px";
+                document.getElementById('bird1').style.top = (Math.random() * (window.innerHeight - 200 )) + "px";
+                document.getElementById('bird1').style.animation = flyAnimation[Math.floor(Math.random()+0.5)] + " 4s ease";
+                console.log(flyAnimation[Math.floor(Math.random()+0.5)])
+            // }
         }
     </script>
 </head>
 <body>
-    <div id="bird">
+    <div id="bird" class="bird">
+        <img src="media/image/bird_flying1.png" alt="">
+    </div>
+    <div id="bird1" class="bird">
         <img src="media/image/bird_flying1.png" alt="">
     </div>
 </body>

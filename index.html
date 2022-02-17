@@ -15,9 +15,46 @@
             text-align: justify;
             font-size:x-large; 
             height: 100vh;
+            overflow-x: hidden;
         }
         
-        
+        .bird{
+            position: absolute;
+            z-index : -4;
+            animation: flyDown 4s ease;
+        }
+        .bird img{
+            width: 200px;
+            height: 200px;
+        }
+
+        #bird1{
+            opacity: 0;
+        }
+        @keyframes flyLeft{
+            0%{right:-20vw;rotate: 0deg;}
+            1%{opacity: 1;}
+            99%{right:120vw;opacity: 1;}
+            100%{opacity: 0;}
+        }
+        @keyframes flyRight{
+            0%{left:-20vw;rotate: 180deg;}
+            1%{opacity: 1;}
+            99%{left:120vw;opacity: 1;}
+            100%{opacity: 0;rotate: 180deg;}
+        }
+        @keyframes flyUp{
+            0%{bottom:-400px;rotate: 90deg;}
+            1%{opacity: 1;}
+            99%{bottom:300vh;opacity: 1;}
+            100%{opacity: 0;rotate: 90deg;}
+        }
+        @keyframes flyDown{
+            0%{top:-400px;rotate: 270deg;}
+            1%{opacity: 1;}
+            99%{top:300vh;opacity: 1;}
+            100%{opacity: 0;rotate: 270deg;}
+        }
         #nav{
             margin:0px;
             padding: 0px;
@@ -198,12 +235,20 @@
     <script>
         var i=0;
         var disp = ['none','block'];
+        var flyAnimation = ['flyRight','flyLeft','flyUp','flyDown'];
+        var bird ;
+        window.onload = ()=>{
+            bird = document.getElementById('bird1');
+        }
         setInterval(() => {
             a();
         }, 5000);
         setInterval(() => {
             fil();
         }, 40);
+        setInterval(() => {
+                randFly();
+        }, 5000);
         // var url = ['./media/image/logo.png','./media/image/background1.jpg'];
         function a(){
             document.getElementById('showslide').children[0].style.display=disp[i==0?1:0];
@@ -219,15 +264,27 @@
             is_drop = !is_drop;
         }
 	
-	var svg_i = 0;
+	    var svg_i = 0;
             function fil(){
                 document.getElementById("grad1").x1.baseVal.value=((svg_i++)%200)-50;
                 document.getElementById("grad1").y1.baseVal.value=((svg_i)%200)-50;
             }
+        
+        function randFly(){
+                var birdSize = Math.floor(Math.random() * 1000) % 400;
+                bird.children[0].style.width = birdSize + "px";
+                bird.children[0].style.height = birdSize + "px";
+                bird.style.top = (Math.random() * (window.innerHeight)) + "px";
+                bird.style.animation = flyAnimation[Math.floor(Math.random()+0.5)] + " 4s ease";
+                console.log(flyAnimation[Math.floor(Math.random()+0.5)]);
+        }
     </script>
     
 </head>
 <body>
+    <div id="bird1" class="bird">
+        <img src="media/image/bird_flying1.png" alt="">
+    </div>
     <div id="nav">
         <nav>
             <ul>
