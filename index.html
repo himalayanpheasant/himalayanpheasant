@@ -21,7 +21,6 @@
         .bird{
             position: absolute;
             z-index : -4;
-            animation: flyDown 4s ease;
         }
         .bird img{
             width: 200px;
@@ -32,16 +31,46 @@
             opacity: 0;
         }
         @keyframes flyLeft{
-            0%{right:-20vw;rotate: 0deg;}
-            1%{opacity: 1;}
-            99%{right:120vw;opacity: 1;}
-            100%{opacity: 0;}
+            0%{
+                right:-20vw;
+                -webkit-transform: rotate(0deg); /* WebKit */
+	            -moz-transform: rotate(0deg); /* Mozilla */
+	            -o-transform: rotate(0deg); /* Opera */
+	            -ms-transform: rotate(0deg); /* Internet Explorer */
+            }
+            1%{
+                opacity: 1;
+            }
+            99%{
+                right:120vw;
+                opacity: 1;
+            }
+            100%{
+                opacity: 0;
+            }
         }
         @keyframes flyRight{
-            0%{left:-20vw;rotate: 180deg;}
-            1%{opacity: 1;}
-            99%{left:120vw;opacity: 1;}
-            100%{opacity: 0;rotate: 180deg;}
+            0%{
+                left:-20vw;
+                -webkit-transform: rotate(180deg); /* WebKit */
+	            -moz-transform: rotate(180deg); /* Mozilla */
+	            -o-transform: rotate(180deg); /* Opera */
+	            -ms-transform: rotate(180deg); /* Internet Explorer */
+            }
+            1%{
+                opacity: 1;
+            }
+            99%{
+                left:120vw;
+                opacity: 1;
+            }
+            100%{
+                opacity: 0;
+                -webkit-transform: rotate(180deg); /* WebKit */
+	            -moz-transform: rotate(180deg); /* Mozilla */
+	            -o-transform: rotate(180deg); /* Opera */
+	            -ms-transform: rotate(180deg); /* Internet Explorer */
+            }
         }
         @keyframes flyUp{
             0%{bottom:-400px;rotate: 90deg;}
