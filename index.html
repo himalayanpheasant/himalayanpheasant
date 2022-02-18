@@ -11,14 +11,34 @@
             scroll-behavior: smooth;
         }
 
-        * {
-            box-sizing: border-box;
-        }
 
-        body {
-            margin: 0;
-            font-family: Arial;
-            font-size: 17px;
+        body{
+            font-family: sans-serif;
+            text-align: justify;
+            font-size:x-large;  
+            /* background-image: url('./media/image/background1.jpg'); */
+        }
+        #nav{
+            margin:0px;
+            padding: 0px;
+            width: 100%;
+            position: relative;
+            height:100px;
+        }
+        #nav ul{
+            list-style-type: none;
+            padding: 0px;
+            margin:0px;
+        }
+        #nav li{
+            background-color: rgba(0,0,0,0);    
+        }
+        #nav img{
+            /* position:absolute;
+            width: 100px;
+            height: 100px;
+            margin-left:50%;
+            translate:calc(-50%); */
         }
 
         #background_video{
@@ -47,37 +67,7 @@
             height: 100vh;
             transform: translate(4,4);
         }
-        nav{
-            z-index: 4;
-            position: fixed;
-            top: 0px;
-        }
-
-        #nav_bar{
-            margin-top: 0px;
-            display: flex;
-            list-style-type: none;
-            width: 66px;
-            background-color: rgba(151, 153, 160,0.6);
-        }
-
-        #nav_bar li{
-            position: relative;
-            left: 30%;
-            transform: translateX(-50%);
-            color: white;
-            margin: 10px;
-            /* padding: 10px 10px 10px 0px; */
-        }
-
-        #nav_logo{
-            position: relative;
-            left: 30%;
-            transform: translateX(-50%);
-            width: 80px;
-            margin: 10px 10px 0 0;
-            /* padding: 10px; */
-        }
+        
 
         header{
             color: white;
@@ -122,37 +112,12 @@
             text-align: right;
         }
 
-        #section2_header{
+        #section2 #longimage{
+            width:100%;
+            height:200px;
             display: flex;
-            width: 100vw;
-            justify-content: center;
-            position: relative;
-            margin-top: 80px;
-        }
-
-        #section2_container{
-
-            /* display: block; */
-            margin-top: 30px;
-            /* justify-content: center; */
-        }
-
-        #section2_text{
-            margin-top: 0px;
-            margin-right: 40vw;
-        }
-
-        #section2_image{
-            position: absolute;
-            margin-left: 10vw;
-            height:auto;
-        }
-
-        #section2_image img{
-            width: 30vw;
-            height: auto;
-            min-width: 400px;
-            max-height: 600px;
+            align-items: center; /* vertical */
+            justify-content: center; /* horizontal */
         }
 
         #section3{
@@ -236,56 +201,43 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top nav-fill" style="background-color: rgba(46, 68, 146, 0.9); height: 10vh; justify-content: center;">
-        <a class="navbar-brand" href="#">
-            <img src="/media/image/logo.png" alt="HP 2.0" id="nav_logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#section2">ABOUT US</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#section3">PARTNERS</a>
-              </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#section3">CONTACT</a>
-              </li>
-            <!-- <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a> -->
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 10px;color: white;">
-                <a class="dropdown-item" href="#">PARTNERS</a>
-                <a class="dropdown-item" href="#">ABOUT US</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li> -->
-          </ul>
-          <!-- <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form> -->
-        </div>
-      </nav>
-    <!-- <nav>
-        <ul id="nav_bar">
-            <li><a href="#">ROADMAP</a></li>
-            <li><a href="#page3">PARTNERS</a></li>
-            <img src="/media/image/logo.png" alt="HP 2.0" id="nav_logo">
-            <li><a href="#page2">ABOUT US</a></li>
-            <li><a href="#page3">CONTACT</a></li>
-        </ul>
-    </nav> -->
+    <div id="nav">
+        <nav class="navbar navbar-expand-lg navbar-light sticky-top nav-fill" style="background-color: rgba(46, 68, 146, 0.9); height: 10vh; justify-content: center;">
+            <a class="navbar-brand" href="#">
+                <img src="/media/image/logo.png" alt="HP 2.0" id="nav_logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
     
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="#section2">ABOUT US</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#section3">PARTNERS</a>
+                  </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#section3">CONTACT</a>
+                  </li>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 10px;color: white;">
+                    <a class="dropdown-item" href="#">PARTNERS</a>
+                    <a class="dropdown-item" href="#">ABOUT US</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </li>
+              </ul>
+              <!-- <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form> -->
+            </div>
+          </nav>
+    </div>
+    <hr>
     <div id="section1">
         <div id="background_video">
             <!-- <img src="/media/image/background1.jpg" alt="we"> -->
@@ -309,24 +261,13 @@
     
 
       <div id="section2">
-        <div id="section2_header">
-            <h1>
-                Who we are?
-            </h1>
+        <h3 style="text-align: center;">who we are</h3>
+        <div id="longimage" style="overflow:hidden;">
+            <img src="media/image/vehicle_sideview.png" alt="himalayan pheasant 2.0">
         </div>
-
-        <div id="section2_container">
-            <div id="section2_image">
-                <img id="section2_image_img" src="/media/image/background1.jpg" alt="Himalayan pheasant 2.0">
-            </div>
-    
-            <div id="section2_text">
-                <p>
-                    Himalayan Pheasant 2.0 is a Prototype concept battery-electric driven automobile. It is an augmented form of Himalayan Pheasant 1.0 that represented Nepal in Shell Eco-Marathon 2021 and secured 127th position making it a proud moment to celebrate. 
-Inspired and driven by the enthusiasm and commitment of Himalayan Pheasant 1.0, we are a team of multidisciplinary students working full-fledgedly to meet our vision and mission i.e to contribute to a sustainable future by building a vehicle that can travel more distance with a certain volume of fuel.  
-
-                </p>
-            </div>
+        <p style="text-align: center;">Himalayan Pheasant 2.0 is a Prototype concept battery-electric driven automobile. It is an augmented form of Himalayan Pheasant 1.0 that represented Nepal in Shell Eco-Marathon 2021 and secured 127th position making it a proud moment to celebrate. 
+            Inspired and driven by the enthusiasm and commitment of Himalayan Pheasant 1.0, we are a team of multidisciplinary students working full-fledgedly to meet our vision and mission i.e to contribute to a sustainable future by building a vehicle that can travel more distance with a certain volume of fuel.   
+        </p>
             <div id="arrow_container">
                 <a href="#section3">
                     <span class="arrow"></span><br>
