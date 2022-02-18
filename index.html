@@ -4,26 +4,93 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Himalayan pheasant</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Himalayan Pheasant</title>
+    <script src="https://kit.fontawesome.com/57abca3fce.js" crossorigin="anonymous"></script>
     <style>
-        html{
+        *{
             scroll-behavior: smooth;
         }
-
-
         body{
             font-family: sans-serif;
             text-align: justify;
-            font-size:x-large;  
-            /* background-image: url('./media/image/background1.jpg'); */
+            font-size:x-large; 
+            height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .bird{
+            position: fixed;
+            z-index : -4;
+        }
+        .bird img{
+            width: 200px;
+            height: 200px;
+        }
+
+        #bird1{
+            opacity: 0;
+        }
+        @keyframes flyLeft{
+            0%{
+                right:-20vw;
+                -webkit-transform: rotate(0deg); /* WebKit */
+	            -moz-transform: rotate(0deg); /* Mozilla */
+	            -o-transform: rotate(0deg); /* Opera */
+	            -ms-transform: rotate(0deg); /* Internet Explorer */
+            }
+            1%{
+                opacity: 1;
+            }
+            99%{
+                right:120vw;
+                opacity: 1;
+            }
+            100%{
+                opacity: 0;
+            }
+        }
+        @keyframes flyRight{
+            0%{
+                left:-20vw;
+                -webkit-transform: rotate(180deg); /* WebKit */
+	            -moz-transform: rotate(180deg); /* Mozilla */
+	            -o-transform: rotate(180deg); /* Opera */
+	            -ms-transform: rotate(180deg); /* Internet Explorer */
+            }
+            1%{
+                opacity: 1;
+            }
+            99%{
+                left:120vw;
+                opacity: 1;
+            }
+            100%{
+                opacity: 0;
+                -webkit-transform: rotate(180deg); /* WebKit */
+	            -moz-transform: rotate(180deg); /* Mozilla */
+	            -o-transform: rotate(180deg); /* Opera */
+	            -ms-transform: rotate(180deg); /* Internet Explorer */
+            }
+        }
+        @keyframes flyUp{
+            0%{bottom:-400px;rotate: 90deg;}
+            1%{opacity: 1;}
+            99%{bottom:300vh;opacity: 1;}
+            100%{opacity: 0;rotate: 90deg;}
+        }
+        @keyframes flyDown{
+            0%{top:-400px;rotate: 270deg;}
+            1%{opacity: 1;}
+            99%{top:300vh;opacity: 1;}
+            100%{opacity: 0;rotate: 270deg;}
         }
         #nav{
             margin:0px;
             padding: 0px;
             width: 100%;
             position: relative;
-            height:100px;
+            min-height: 100px;
+            
         }
         #nav ul{
             list-style-type: none;
@@ -31,103 +98,112 @@
             margin:0px;
         }
         #nav li{
-            background-color: rgba(0,0,0,0);    
+            background-color: rgba(0,0,0,1);    
         }
+
         #nav img{
-            /* position:absolute;
+            position:absolute;
             width: 100px;
             height: 100px;
             margin-left:50%;
-            translate:calc(-50%); */
+            -webkit-transform: translate(calc(-50%)); /* WebKit */
+	        -moz-transform: translate(calc(-50%)); /* Mozilla */
+	        -o-transform: translate(calc(-50%)); /* Opera */
+	        -ms-transform: translate(calc(-50%)); /* Internet Explorer */
+        }
+        #dropdown{
+            background-color: white;
+            padding: 10px;
+            display: none;   /*flex*/
+            flex-direction: column;
+            right: 0;
+            position:absolute;
+            margin-top: 110px;
+            z-index: 4;
+            overflow: hidden;
+        }
+        @keyframes dropdown {
+            100%{height:100%;}
+        }
+        #dropdown ul{
+            list-style-type: none;
+            padding: 10px;
+            margin:0px;
+        }
+        #dropdown li{
+            text-align: center;
+            padding: 10px;
+            background-color: rgba(0,0,0,0);    
+        }
+        #dropdown form input{
+            padding: 10px;
+            margin: 10px;
         }
 
-        #background_video{
-            z-index: -1;
-            position: absolute;
-            top: 0;
-            left: 0;
-            min-width: 100%;
-            min-height: 100%;
-            overflow-x: hidden;
-            width: 100vw;
-            height: 100vh;
+        #section1{
+            height: calc(100vh - 100px);
+        }
+        #showslide{
+            overflow: hidden;
+            width: auto;
+            margin:auto;
+            max-width: auto;
+            min-width: 150px;
+            height: auto;
+            max-height: 50vh;
+            padding: 10px;
+        }
+        #showslide img{
+            width: auto;
+            height: 200px;
+            margin:auto;
+            display: none;
+            animation: appear 0.5s ease-in;
         }
 
-        video{
-            object-fit: cover;
-            width: 100vw;
-            height: 100vh;
-            position: absolute;
-            top: 0;
-            left: 0;
+        @keyframes appear{
+            0%{opacity: 0%;}
+            100%{opacity: 100%;}
+        }
+        
+        svg{
+            stroke:#000;
+            stroke-linecap:round;
+            stroke-linejoin:round;
+            fill:#fff;
+            fill-rule:evenodd;
+            font-family:Roboto;
+            font-size:30px;
+            text-anchor:middle;
+        }
+        svg text{
+            paint-order:stroke;
+            white-space:pre
+        }
+        svg .Text\.cls{
+            stroke:none
         }
 
-        #background_video img{
-            width: 100vw;
-            height: 100vh;
-            transform: translate(4,4);
+        #main_svg{
+            min-height:20px;
+            max-height: 40px;
+        }
+        svg path{
+            stroke: black;
+        }
+
+        @keyframes ani{
+            100%{scale: 2;}
         }
         
 
-        header{
-            color: white;
-            z-index: 4;
-            mix-blend-mode: difference;
-            width: 100vw;
-            height: 20vh;
-            text-align: center;
-            margin-top: 40vh;
-        }
-        header span{
-            font-size: 20px;
-        }
-
-        #arrow_container{
-            width:100vw;
-            position: absolute;
-            text-align: center;
-            bottom: 10vh;
-        }
-
-        .arrow {
-            border: solid white;
-            mix-blend-mode: difference;
-            border-width: 0 5px 5px 0;
-            display: inline-block;
-            padding: 10px;
-            transform: rotate(45deg);
-            -webkit-transform: rotate(45deg);
-        }
-
-        .up{
-            transform: rotate(220deg);
-        }
-
-        #section2{
-            position: absolute;
-            top: 100vh;
-            border: 1px solid black;
-            width: 100vw;
-            height: 100vh;
-            text-align: right;
-        }
-
-        #section2 #longimage{
-            width:100%;
-            height:200px;
+        #longimage{
+            width:auto;
+            max-height:30vh;
             display: flex;
             align-items: center; /* vertical */
             justify-content: center; /* horizontal */
         }
-
-        #section3{
-            position: absolute;
-            top: 200vh;
-            border: 1px solid black;
-            width: 100vw;
-            justify-content: center;
-        }
-
         #section3_partner{
             display: flex;
             justify-content: center;
@@ -137,32 +213,24 @@
             text-align: center;
         }
 
-        #section3_partner {
-            display: flexbox;
-        }
 
         #section3_image{
-            width: 100px;
-            height: 100px;
+            min-width: 100px;
+            min-height: 100px;
             border: 1px solid red;
             border-radius: 50px;
             margin: 20px;
+            overflow: hidden;
         }
 
-        #section3_top{
-            position: absolute;
-            right: 20px;
-        }
 
         footer{
-            border: 1px solid black;
-            /* background-color: blue; */
             margin-top: 50px;
+            font-size: 18px;
         }
 
         #social_links{
             display: flex;
-            width: 100vw;
             justify-content: center;
         }
 
@@ -171,114 +239,209 @@
         }
 
         #copyright , #contact{
-            width: 100vw;
             justify-content: center;
             display: flex;
         }
 
+        .partner_1,#section3_image{
+            background: url('./media/image/logo1.png') center no-repeat;
+        }
+        .partner_2{
+            background: url('./media/image/logo1.png') center no-repeat;
+        }
+        .partner_3{
+            background: url('./media/image/logo1.png') center no-repeat;
+        }
+        
         @media only screen and (max-width:888px) {
-
-            #section2_header{
-                justify-content: center;
-            }
-
-            #section2_image{
-                width: 100vw;
-                transform: translate(-50px);
-                justify-content: center;
-                position: absolute; 
-                top: 200px;
-            }
-            
-            #section2_text{
-                width: 100vw;
-                text-align: center;
-                position: absolute;
-                top: 400px;
-            }
-
+        	#nav{
+        		height: 10vh;
+        		min-height:100px;
+        	}
+        	
         }
     </style>
+    <script>
+        var i=0;
+        var disp = ['none','block'];
+        var flyAnimation = ['flyRight','flyLeft','flyUp','flyDown'];
+        var bird ;
+        window.onload = ()=>{
+            bird = document.getElementById('bird1');
+        }
+        setInterval(() => {
+            a();
+        }, 5000);
+        setInterval(() => {
+            fil();
+        }, 40);
+        setInterval(() => {
+                randFly();
+        }, 5000);
+        // var url = ['./media/image/logo.png','./media/image/background1.jpg'];
+        function a(){
+            document.getElementById('showslide').children[0].style.display=disp[i==0?1:0];
+            document.getElementById('showslide').children[1].style.display=disp[i==1?1:0];
+            document.getElementById('showslide').children[2].style.display=disp[i==2?1:0];
+            // document.getElementsByTagName('body')[0].style.backgroundImage="url('"+url[i]+"')";
+            i = (i+1)%3;
+        }
+
+        var is_drop = 0;
+        function dropdown(){
+            document.getElementById('dropdown').style.display=is_drop?"none":"flex";
+            is_drop = !is_drop;
+        }
+	
+	    var svg_i = 0;
+            function fil(){
+                document.getElementById("grad1").x1.baseVal.value=((svg_i++)%200)-50;
+                document.getElementById("grad1").y1.baseVal.value=((svg_i)%200)-50;
+            }
+        
+        function randFly(){
+                var birdSize = Math.floor(Math.random() * 1000) % 400;
+                bird.children[0].style.width = birdSize + "px";
+                bird.children[0].style.height = birdSize + "px";
+                bird.style.top = (Math.random() * (window.innerHeight)) + "px";
+                bird.style.animation = flyAnimation[Math.floor(Math.random()+0.5)] + " 4s ease";
+                console.log(flyAnimation[Math.floor(Math.random()+0.5)]);
+        }
+    </script>
+    
 </head>
 <body>
+    <div id="bird1" class="bird">
+        <img src="media/image/bird_flying1.png" alt="">
+    </div>
     <div id="nav">
-        <nav class="navbar navbar-expand-lg navbar-light sticky-top nav-fill" style="background-color: rgba(46, 68, 146, 0.9); height: 10vh; justify-content: center;">
-            <a class="navbar-brand" href="#">
-                <img src="/media/image/logo.png" alt="HP 2.0" id="nav_logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-    
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="#section2">ABOUT US</a>
+        <nav>
+            <ul>
+                <li style="float:left;">
+                    <a href=""><img src="media/image/logo.png" alt="HP"></a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#section3">PARTNERS</a>
-                  </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#section3">CONTACT</a>
-                  </li>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 10px;color: white;">
-                    <a class="dropdown-item" href="#">PARTNERS</a>
-                    <a class="dropdown-item" href="#">ABOUT US</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
+                <li style="float: right;margin-top:30px;">
+                    <div onclick="dropdown()" style="background:white;">
+                    	<svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 88 50" >
+                    		<path d="M 1e-13 1e-13 L 83 0 M 0 20.75 L 83 20.75 M 0 41.5 L 83 41.5" fill="red" fill-rule="nonzero" stroke-width="5" transform="translate(2.0833 2.0833)"/>
+                    	</svg>
+                    </div>
                 </li>
-              </ul>
-              <!-- <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form> -->
-            </div>
-          </nav>
+                <div id="dropdown">
+                    <ul>
+                        <li>
+                            <a class="dropdown-item" href="#section2">ABOUT US</a>
+                        </li>
+                        <li>
+                            <a href="#section3">Our partners</a>
+                        </li>
+                        <li>
+                            leave us your contact and we will reach to you
+                            <form action="" method="post" style="display: flex; flex-direction: column;">
+                                <input type="text" name="contact" id="" placeholder="email/phone">
+                                <input type="text" name="message" id="" placeholder="message">
+                                <input type="submit" value="submit">
+                        </form>
+                        </li>
+                    </ul>
+                </div>
+            </ul>
+        </nav>
     </div>
     <hr>
-    <div id="section1">
-        <div id="background_video">
-            <!-- <img src="/media/image/background1.jpg" alt="we"> -->
-            <!-- <video autoplay muted loop id="myVideo">
-                <source src="/media/video/intro1.mp4" type="video/mp4">
-            </video>     -->
+    <div id="section1" style="text-align: center;margin-top: 20px;">
+        We are <br> <h2>Team <br></h3><h3><svg id="main_svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 330 22" ><g><g >
+        <defs>
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="80%" y2="10%">
+              <stop offset="0%" style="stop-color:rgb(26, 5, 146);
+              stop-opacity:0" />
+              <stop offset="50%" style="stop-color:rgb(38, 0, 253);
+              stop-opacity:0.5" />
+              <stop offset="100%" style="stop-color:rgb(0,0,255);stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <g><g >
+              <g transform="translate(0 0.3076)">
+                  <path fill="url('#grad1')" d="M 13.96 19.7607 L 9.6387 19.7607 L 9.6387 11.3525 L 4.3213 11.3525 L 4.3213 19.7607 L 0 19.7607 L 0 0 L 4.3213 0 L 4.3213 7.7783 L 9.6387 7.7783 L 9.6387 0 L 13.96 0 L 13.96 19.7607 Z" stroke="none"/>
+                </g>
+          <g transform="translate(18.2813 0.3076)">
+              <path fill="url('#grad1')" d="M 0 3.3398 L 0 0 L 13.418 0 L 13.418 3.3398 L 8.8623 3.3398 L 8.8623 16.4209 L 13.418 16.4209 L 13.418 19.7607 L 0 19.7607 L 0 16.4209 L 4.5557 16.4209 L 4.5557 3.3398 L 0 3.3398 Z" stroke="none"/>
+            </g>
+          <g transform="translate(35.4346 0.3076)">
+              <path fill="url('#grad1')" d="M 15.1025 19.7607 L 11.8506 19.7607 L 11.8506 7.0459 Q 11.8506 5.5078 12.085 2.6367 Q 11.2207 6.8848 10.9863 7.6318 L 9.1699 14.4873 L 5.9766 14.4873 L 4.1309 7.6318 Q 3.7061 6.0498 3.0176 2.6367 L 3.1201 4.1016 Q 3.2227 5.6396 3.2227 7.0459 L 3.2227 19.7607 L 0 19.7607 L 0 0 L 5.083 0 L 7.0605 7.3096 Q 7.2803 7.998 7.6172 10.6934 Q 7.9102 8.4229 8.2031 7.3242 L 10.1953 0 L 15.1025 0 L 15.1025 19.7607 Z" stroke="none"/>
+            </g>
+          <g transform="translate(51.9873 0.3076)">
+              <path fill="url('#grad1')" d="M 11.5283 0 L 18.0029 19.7607 L 13.6963 19.7607 L 12.3486 14.9268 L 5.6689 14.9268 L 4.3213 19.7607 L 0 19.7607 L 6.4893 0 L 11.5283 0 Z M 9.0088 2.666 Q 8.8916 3.2813 8.5767 4.5044 Q 8.2617 5.7275 6.5771 11.6748 L 11.4404 11.6748 Q 9.7266 5.6396 9.4263 4.4531 Q 9.126 3.2666 9.0088 2.666 Z" stroke="none"/>
+            </g>
+          <g transform="translate(73.0811 0.3076)">
+              <path fill="url('#grad1')" d="M 13.3447 19.7607 L 0 19.7607 L 0 0 L 4.3213 0 L 4.3213 16.4209 L 13.3447 16.4209 L 13.3447 19.7607 Z" stroke="none"/>
+            </g>
+          <g transform="translate(87.9932 0.3076)">
+              <path fill="url('#grad1')" d="M 11.5283 0 L 18.0029 19.7607 L 13.6963 19.7607 L 12.3486 14.9268 L 5.6689 14.9268 L 4.3213 19.7607 L 0 19.7607 L 6.4893 0 L 11.5283 0 Z M 9.0088 2.666 Q 8.8916 3.2813 8.5767 4.5044 Q 8.2617 5.7275 6.5771 11.6748 L 11.4404 11.6748 Q 9.7266 5.6396 9.4263 4.4531 Q 9.126 3.2666 9.0088 2.666 Z" stroke="none"/>
+            </g>
+          <g transform="translate(106.04 0.3076)">
+              <path fill="url('#grad1')" d="M 17.9004 0 L 11.1035 11.6162 L 11.1035 19.7607 L 6.7969 19.7607 L 6.7969 11.6162 L 0 0 L 4.5264 0 L 8.9209 8.291 L 13.374 0 L 17.9004 0 Z" stroke="none"/>
+            </g>
+          <g transform="translate(123.999 0.3076)">
+              <path fill="url('#grad1')" d="M 11.5283 0 L 18.0029 19.7607 L 13.6963 19.7607 L 12.3486 14.9268 L 5.6689 14.9268 L 4.3213 19.7607 L 0 19.7607 L 6.4893 0 L 11.5283 0 Z M 9.0088 2.666 Q 8.8916 3.2813 8.5767 4.5044 Q 8.2617 5.7275 6.5771 11.6748 L 11.4404 11.6748 Q 9.7266 5.6396 9.4263 4.4531 Q 9.126 3.2666 9.0088 2.666 Z" stroke="none"/>
+            </g>
+          <g transform="translate(143.9795 0.3076)">
+              <path fill="url('#grad1')" d="M 14.0479 19.7607 L 8.9795 19.7607 L 3.3545 4.9658 Q 3.7646 8.6572 3.7646 10.1514 L 3.7646 19.7607 L 0 19.7607 L 0 0 L 4.9365 0 L 10.6934 15.1904 Q 10.2832 11.748 10.2832 9.8438 L 10.2832 0 L 14.0479 0 L 14.0479 19.7607 Z" stroke="none"/>
+            </g>
+          <g transform="translate(180 0.3076)">
+              <path fill="url('#grad1')" d="M 14.7363 6.2402 Q 14.7363 8.2031 13.8428 9.6899 Q 12.9492 11.1768 11.2573 11.9824 Q 9.5654 12.7881 7.207 12.7881 L 4.3213 12.7881 L 4.3213 19.7607 L 0 19.7607 L 0 0 L 7.0313 0 Q 10.7959 0 12.7661 1.5894 Q 14.7363 3.1787 14.7363 6.2402 Z M 10.3857 6.3135 Q 10.3857 4.7168 9.4263 4.0356 Q 8.4668 3.3545 6.5479 3.3545 L 4.3213 3.3545 L 4.3213 9.4629 L 6.665 9.4629 Q 8.5986 9.4629 9.4922 8.6646 Q 10.3857 7.8662 10.3857 6.3135 Z" stroke="none"/>
+            </g>
+          <g transform="translate(198.0322 0.3076)">
+              <path fill="url('#grad1')" d="M 13.96 19.7607 L 9.6387 19.7607 L 9.6387 11.3525 L 4.3213 11.3525 L 4.3213 19.7607 L 0 19.7607 L 0 0 L 4.3213 0 L 4.3213 7.7783 L 9.6387 7.7783 L 9.6387 0 L 13.96 0 L 13.96 19.7607 Z" stroke="none"/>
+            </g>
+          <g transform="translate(216.0205 0.3076)">
+              <path fill="url('#grad1')" d="M 14.7803 19.7607 L 0 19.7607 L 0 0 L 14.1797 0 L 14.1797 3.3398 L 4.3213 3.3398 L 4.3213 8.0859 L 13.2861 8.0859 L 13.2861 11.4258 L 4.3213 11.4258 L 4.3213 16.4209 L 14.7803 16.4209 L 14.7803 19.7607 Z" stroke="none"/>
+            </g>
+          <g transform="translate(232.0166 0.3076)">
+              <path fill="url('#grad1')" d="M 11.5283 0 L 18.0029 19.7607 L 13.6963 19.7607 L 12.3486 14.9268 L 5.6689 14.9268 L 4.3213 19.7607 L 0 19.7607 L 6.4893 0 L 11.5283 0 Z M 9.0088 2.666 Q 8.8916 3.2813 8.5767 4.5044 Q 8.2617 5.7275 6.5771 11.6748 L 11.4404 11.6748 Q 9.7266 5.6396 9.4263 4.4531 Q 9.126 3.2666 9.0088 2.666 Z" stroke="none"/>
+            </g>
+          <g transform="translate(250.5762 0)">
+              <path fill="url('#grad1')" d="M 16.5088 14.3408 Q 16.5088 17.1533 14.3628 18.7573 Q 12.2168 20.3613 8.3936 20.3613 Q 4.9512 20.3613 2.7832 18.9111 Q 0.6152 17.4609 0 14.6924 L 4.1748 14.1504 Q 4.5117 15.5273 5.5811 16.3257 Q 6.6504 17.124 8.5107 17.124 Q 10.4443 17.124 11.3745 16.5088 Q 12.3047 15.8936 12.3047 14.5898 Q 12.3047 13.623 11.4844 12.9565 Q 10.6641 12.29 9.0967 11.9092 Q 5.9473 11.1475 4.6509 10.5835 Q 3.3545 10.0195 2.5781 9.3164 Q 1.8018 8.6133 1.3843 7.6685 Q 0.9668 6.7236 0.9668 5.5518 Q 0.9668 2.9883 3.0249 1.4941 Q 5.083 0 8.4521 0 Q 11.7334 0 13.5791 1.2964 Q 15.4248 2.5928 15.9668 5.3174 L 11.7773 5.7422 Q 11.1328 3.0615 8.3643 3.0615 Q 6.8115 3.0615 5.9912 3.6401 Q 5.1709 4.2188 5.1709 5.3027 Q 5.1709 6.0205 5.5664 6.4966 Q 5.9619 6.9727 6.6431 7.3022 Q 7.3242 7.6318 9.4189 8.1738 Q 12.1729 8.8477 13.6523 9.6753 Q 15.1318 10.5029 15.8203 11.6748 Q 16.5088 12.8467 16.5088 14.3408 Z" stroke="none"/>
+            </g>
+          <g transform="translate(268.0225 0.3076)">
+              <path fill="url('#grad1')" d="M 11.5283 0 L 18.0029 19.7607 L 13.6963 19.7607 L 12.3486 14.9268 L 5.6689 14.9268 L 4.3213 19.7607 L 0 19.7607 L 6.4893 0 L 11.5283 0 Z M 9.0088 2.666 Q 8.8916 3.2813 8.5767 4.5044 Q 8.2617 5.7275 6.5771 11.6748 L 11.4404 11.6748 Q 9.7266 5.6396 9.4263 4.4531 Q 9.126 3.2666 9.0088 2.666 Z" stroke="none"/>
+            </g>
+          <g transform="translate(288.0029 0.3076)">
+              <path fill="url('#grad1')" d="M 14.0479 19.7607 L 8.9795 19.7607 L 3.3545 4.9658 Q 3.7646 8.6572 3.7646 10.1514 L 3.7646 19.7607 L 0 19.7607 L 0 0 L 4.9365 0 L 10.6934 15.1904 Q 10.2832 11.748 10.2832 9.8438 L 10.2832 0 L 14.0479 0 L 14.0479 19.7607 Z" stroke="none"/>
+            </g>
+          <g transform="translate(304.9219 0.3076)">
+              <path fill="url('#grad1')" d="M 16.2158 3.3398 L 10.2686 3.3398 L 10.2686 19.7607 L 5.9473 19.7607 L 5.9473 3.3398 L 0 3.3398 L 0 0 L 16.2158 0 L 16.2158 3.3398 Z" stroke="none"/>
+            </g>
+            </g>
+            </g></svg></h3>
+        <div id="showslide">
+            <img style="display: block;" src="./media/image/background1.jpg" alt="">
+            <img src="./media/image/logo.png" alt="">
+            <img src="./media/image/logo1.png" alt="">
         </div>
-        <header class="section1_header">
-            <h1>
-                <strong>HIMALAYAN PHEASANT 2.0</strong><br>
-                <span>inspiring the innovation</span>
-            </h1>
-          </header>
-          <div id="arrow_container">
+        <div id="arrow_container">
             <a href="#section2">
                 <span class="arrow"></span><br>
                 down
             </a>
-          </div>
-    </div>
-    
-
-      <div id="section2">
-        <h3 style="text-align: center;">who we are</h3>
-        <div id="longimage" style="overflow:hidden;">
-            <img src="media/image/vehicle_sideview.png" alt="himalayan pheasant 2.0">
         </div>
-        <p style="text-align: center;">Himalayan Pheasant 2.0 is a Prototype concept battery-electric driven automobile. It is an augmented form of Himalayan Pheasant 1.0 that represented Nepal in Shell Eco-Marathon 2021 and secured 127th position making it a proud moment to celebrate. 
+    </div>
+
+    <div id="section2" style="text-align: center;">
+        <h3 style="text-align: center;">About Us</h3>
+        <div id="longimage" style="overflow:hidden;">
+            <img src="https://cdn3.vectorstock.com/i/1000x1000/69/92/seamless-horizontal-long-urban-landscape-small-vector-11546992.jpg" alt="">
+        </div>
+        <p style="text-align: center;max-width:80vw;margin:auto;margin-top:20px;">Himalayan Pheasant 2.0 is a Prototype concept battery-electric driven automobile. It is an augmented form of Himalayan Pheasant 1.0 that represented Nepal in Shell Eco-Marathon 2021 and secured 127th position making it a proud moment to celebrate. 
             Inspired and driven by the enthusiasm and commitment of Himalayan Pheasant 1.0, we are a team of multidisciplinary students working full-fledgedly to meet our vision and mission i.e to contribute to a sustainable future by building a vehicle that can travel more distance with a certain volume of fuel.   
         </p>
-            <div id="arrow_container">
-                <a href="#section3">
-                    <span class="arrow"></span><br>
-                    down
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <div id="section3">
-        <div id="section3_title">
+        <a href="team.html">meet our team</a>
+        <div id="arrow_container">
+            <a href="#section3">
+                <span class="arrow"></span><br>
+                down
+            </a>
+        <div id="section3">
             <h3>Our sponsors</h3>
             <div id="section3_partner">
                 <div id="section3_image"></div>
@@ -288,9 +451,9 @@
 
             <h3>Our media partners</h3>
             <div id="section3_partner">
-                <div id="section3_image"></div>
-                <div id="section3_image"></div>
-                <div id="section3_image"></div>
+                <div id="section3_image" class="partner_1"></div>
+                <div id="section3_image" class="partner_2"></div>
+                <div id="section3_image" class="partner_3"></div>
             </div>
         </div>
 
@@ -299,23 +462,26 @@
                 <span class="arrow up"></span><br>
                 <span>top</span>
             </a>
+        </div>          
         </div>
-
-        <footer>
-            <div id="contact">
-                email:himalayanpheasant1@gmail.com
-            </div>
-            <div id="social_links">
-                <a href="">facebook</a>
-                <a href="">youtube</a>
-                <a href="">instagram</a>
-            </div>
-            <div id="copyright">
-                copyright 2021 , himalayan pheasant
-            </div>
-        </footer>
-        
+        </div>
     </div>
+
+    <footer>
+        <div id="contact">
+            email:himalayanpheasant1@gmail.com
+        </div>
+        <div id="social_links">
+            <a href=""><i class="fa-brands fa-facebook"></i></a>
+            <a href=""><i class="fa-brands fa-youtube"></i></a>
+            <a href=""><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        <div id="copyright">
+            <i class="fa-solid fa-copyright"></i>2022, himalayan pheasant
+        </div>
+    </footer>
+    
+</div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
