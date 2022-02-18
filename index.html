@@ -19,7 +19,7 @@
         }
         
         .bird{
-            position: fixed;
+            position: absolute;
             z-index : -4;
         }
         .bird img{
@@ -158,7 +158,13 @@
             height: 200px;
             margin:auto;
             display: none;
-            animation: appear 0.5s ease-in;
+            /* animation: appear 0.5s ease-in; */
+            animation: rotate 0.5s ease-in infinite;
+            rotate: 0deg;
+        }
+        @keyframes rotate {
+            0%{rotate: 0deg;}
+            100%{rotate: 360deg;}
         }
 
         @keyframes appear{
@@ -269,17 +275,17 @@
         window.onload = ()=>{
             bird = document.getElementById('bird1');
         }
-        setInterval(() => {
-            a();
-        }, 5000);
+        // setInterval(() => {
+        //     slideshow();
+        // }, 10000);
         setInterval(() => {
             fil();
         }, 40);
         setInterval(() => {
                 randFly();
-        }, 5000);
+        }, 7000);
         // var url = ['./media/image/logo.png','./media/image/background1.jpg'];
-        function a(){
+        function slideshow(){
             document.getElementById('showslide').children[0].style.display=disp[i==0?1:0];
             document.getElementById('showslide').children[1].style.display=disp[i==1?1:0];
             document.getElementById('showslide').children[2].style.display=disp[i==2?1:0];
@@ -303,8 +309,8 @@
                 var birdSize = Math.floor(Math.random() * 1000) % 400;
                 bird.children[0].style.width = birdSize + "px";
                 bird.children[0].style.height = birdSize + "px";
-                bird.style.top = (Math.random() * (window.innerHeight)) + "px";
-                bird.style.animation = flyAnimation[Math.floor(Math.random()+0.5)] + " 4s ease";
+                bird.style.top = (Math.random() * 300) + "vh";
+                bird.style.animation = flyAnimation[Math.floor(Math.random()+0.5)] + " 10s ease";
                 console.log(flyAnimation[Math.floor(Math.random()+0.5)]);
         }
     </script>
@@ -415,9 +421,10 @@
             </g>
             </g></svg></h3>
         <div id="showslide">
-            <img style="display: block;" src="./media/image/background1.jpg" alt="">
+            <!-- <img style="display: block;" src="./media/image/background1.jpg" alt="">
             <img src="./media/image/logo.png" alt="">
-            <img src="./media/image/logo1.png" alt="">
+            <img src="./media/image/logo1.png" alt=""> -->
+            <img src="media/image/vehicle_tire.png" alt="tire of vehicle" style="display: block;">
         </div>
         <div id="arrow_container">
             <a href="#section2">
@@ -430,7 +437,7 @@
     <div id="section2" style="text-align: center;">
         <h3 style="text-align: center;">About Us</h3>
         <div id="longimage" style="overflow:hidden;">
-            <img src="https://cdn3.vectorstock.com/i/1000x1000/69/92/seamless-horizontal-long-urban-landscape-small-vector-11546992.jpg" alt="">
+            <img src="media/image/vehicle_sideview.png" alt="">
         </div>
         <p style="text-align: center;max-width:80vw;margin:auto;margin-top:20px;">Himalayan Pheasant 2.0 is a Prototype concept battery-electric driven automobile. It is an augmented form of Himalayan Pheasant 1.0 that represented Nepal in Shell Eco-Marathon 2021 and secured 127th position making it a proud moment to celebrate. 
             Inspired and driven by the enthusiasm and commitment of Himalayan Pheasant 1.0, we are a team of multidisciplinary students working full-fledgedly to meet our vision and mission i.e to contribute to a sustainable future by building a vehicle that can travel more distance with a certain volume of fuel.   
