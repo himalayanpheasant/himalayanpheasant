@@ -29,7 +29,7 @@
             max-height: 300px;
             height: 200px;
             width:200px;
-            background-image: url('media/image/bird_flying1.png');
+            /* background-image: url('media/image/bird_flying1.png'); */
             background-position: center;
         }
         #container #box #info, #container #box #link{
@@ -39,8 +39,13 @@
             max-width: 300px;
             width:200px;
         }
-        #container #box #info #name, #container #box #info #facility{
+        #container #box #info #name{
             text-align: center;
+            font-size: 18px;
+        } 
+        #container #box #info #facility{
+            text-align: center;
+            font-size: 14px;
         }
         #social_link{
             width: 200px;
@@ -50,9 +55,86 @@
             font-size: 20px;
             padding: 10px;
         }
+        #name{
+            font-size: 18px;
+            font-weight: 400;
+        }
+        /* #info{
+            display: flex;
+        } */
     </style>
+    <script>
+        function create_social(data){
+            var fb = document.createElement("i");
+            fb.className = "fa-brands fa-facebook";
+            var a1 = document.createElement('a');
+            a1.href = data[3];
+            a1.appendChild(fb);
+            var insta = document.createElement("i");
+            insta.className = "fa-brands fa-instagram";
+            var a2 = document.createElement('a');
+            a2.href = data[4];
+            a2.appendChild(insta);
+            var social_links = document.createElement("div");
+            social_links.id = "social_link";
+            social_links.appendChild(a1);
+            social_links.appendChild(a2);
+            return social_links;
+        }
+
+        function info(data){
+            var strong = document.createElement("strong");
+            strong.innerHTML = data[1];
+            var p_name = document.createElement("p");
+            p_name.appendChild(strong);
+            p_name.innerHTML = data[1];
+            var span_name = document.createElement("span");
+            span_name.id = "name";
+            span_name.appendChild(p_name);
+            var p_facility = document.createElement("p");
+            var fac_ref = {'bex' : 'electronics engineering','bct' : 'computer engineering','bme' : 'mechanical engineering','bame' : 'automobile engineering','bel' : 'electrical engineering'};
+            p_facility.innerHTML = fac_ref[data[2]];
+            var span_facility = document.createElement("span");
+            span_facility.id = "facility";
+            span_facility.appendChild(p_facility);
+            var div_info = document.createElement("div");
+            div_info.id = "info";
+            div_info.appendChild(span_name);
+            div_info.appendChild(span_facility);
+            return div_info;
+        }
+        function pic(data){
+            var div_pic = document.createElement("div");
+            div_pic.id = "pic";
+            div_pic.style.backgroundImage = "url("+data[5]+")";
+            return div_pic;
+        }
+        function box(data){
+            var box = document.createElement("div");
+            box.id="box";
+            box.appendChild(pic(data));
+            box.appendChild(info(data));
+            box.appendChild(create_social(data));
+            // console.log("hello");
+            return box;
+        }
+        async function get(){
+            let response =await fetch("http://127.0.0.1:8081/getteam.php");
+            let data = await response.json();
+            // console.log(data);
+            var i = 0;
+            while(data[i]){
+                document.getElementById("container").appendChild(box(data[i]));
+                i++;
+            }
+        // })
+        // .catch(error => {
+        //     // handle the error
+        // })
+        }
+    </script>
 </head>
-<body>
+<body onload="get()">
     <div id="nav">
         <nav>
             <ul>
@@ -64,10 +146,31 @@
     </div>
     <hr>
     <div id="container">
-        <div id="box">
+        <!-- <div id="box">
             <div id="pic">
-                <!-- <img src="media/image/bird_flying1.png" alt=""> -->
+                <img src="media/image/bird_flying1.png" alt="">
             </div>
+            <div id="info">
+                <span id="name">
+                    <p>
+                        <strong>kc roshan kc</strong>
+                    </p> 
+                </span>
+                <span id="facility">
+                    <p>
+                        computer engineering
+                        post
+                    </p>
+                </span>
+            </div>
+
+            <div id="social_link">
+                <a href=""><i class="fa-brands fa-facebook"></i></a>
+                <a href=""><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+        <div id="box">
+            <div id="pic"></div>
             <div id="info">
                 <span id="name" style="font-size: 18px;">
                     <p>
@@ -75,6 +178,7 @@
                 </span>
                 <span id="facility" style="font-size: 14px;">
                         computer engineering
+                        post
                     </p>
                 </span>
             </div>
@@ -92,6 +196,7 @@
                 </span>
                 <span id="facility" style="font-size: 14px;">
                         computer engineering
+                        post
                     </p>
                 </span>
             </div>
@@ -109,6 +214,7 @@
                 </span>
                 <span id="facility" style="font-size: 14px;">
                         computer engineering
+                        post
                     </p>
                 </span>
             </div>
@@ -126,6 +232,7 @@
                 </span>
                 <span id="facility" style="font-size: 14px;">
                         computer engineering
+                        post
                     </p>
                 </span>
             </div>
@@ -143,6 +250,7 @@
                 </span>
                 <span id="facility" style="font-size: 14px;">
                         computer engineering
+                        post
                     </p>
                 </span>
             </div>
@@ -160,6 +268,7 @@
                 </span>
                 <span id="facility" style="font-size: 14px;">
                         computer engineering
+                        post
                     </p>
                 </span>
             </div>
@@ -168,24 +277,7 @@
                 <a href=""><i class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
-        <div id="box">
-            <div id="pic"></div>
-            <div id="info">
-                <span id="name" style="font-size: 18px;">
-                    <p>
-                        <strong>kc roshan kc</strong> <br>
-                </span>
-                <span id="facility" style="font-size: 14px;">
-                        computer engineering
-                    </p>
-                </span>
-            </div>
-            <div id="social_link">
-                <a href=""><i class="fa-brands fa-facebook"></i></a>
-                <a href=""><i class="fa-brands fa-instagram"></i></a>
-            </div>
-        </div>
-        
+         -->
     </div>
     <div id="backbtn" style="text-align: center;font-size: 18px;color: red;">
         <a href="/">back to home</a>
