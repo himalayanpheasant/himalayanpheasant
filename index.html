@@ -110,8 +110,20 @@
             rotate: 0deg;
         }
         @keyframes rotate {
-            0%{rotate: 0deg;}
-            100%{rotate: 360deg;}
+            0%{
+                rotate: 0deg;
+                -webkit-transform: rotate(0deg); /* WebKit */
+	            -moz-transform: rotate(0deg); /* Mozilla */
+	            -o-transform: rotate(0deg); /* Opera */
+	            -ms-transform: rotate(0deg); /* Internet Explorer */
+            }
+            100%{
+                rotate: 360deg;
+                -webkit-transform: rotate(360deg); /* WebKit */
+	            -moz-transform: rotate(360deg); /* Mozilla */
+	            -o-transform: rotate(360deg); /* Opera */
+	            -ms-transform: rotate(360deg); /* Internet Explorer */
+            }
         }
 
         @keyframes appear{
@@ -257,7 +269,7 @@
                 bird.children[0].style.width = birdSize + "px";
                 bird.children[0].style.height = birdSize + "px";
                 bird.style.top = (Math.random() * 300) + "vh";
-                bird.style.animation = flyAnimation[Math.floor(Math.random()+0.5)] + " 10s ease";
+                bird.style.animation = flyAnimation[Math.floor(Math.random()+0.5)] + " 8s ease";
                 console.log(flyAnimation[Math.floor(Math.random()+0.5)]);
         }
     </script>
