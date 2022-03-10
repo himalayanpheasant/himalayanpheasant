@@ -17,11 +17,12 @@
         }
         #container #box{
             margin: 10px;
-            padding: 10px;
+            padding: auto;
             border: 1px solid black;
+  /* overflow: hidden; */
         }
         #container #box #pic{
-            /* overflow: hidden; */
+            overflow: hidden;
             border: 1px solid rgba(0,0,0,0.2);
             min-width: 100px;
             max-width: 300px;
@@ -29,9 +30,21 @@
             max-height: 300px;
             height: 200px;
             width:200px;
+            /* display: block;
+            margin-left: auto;
+            margin-right: auto; */
             /* background-image: url('media/image/bird_flying1.png'); */
             background-position: center;
         }
+        #container #box #pic #img{
+            max-width: 400px;
+            max-height: 400px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
+
         #container #box #info, #container #box #link{
             border: 1px solid rgba(0,0,0,0.2);
             min-height: 40px;
@@ -106,7 +119,11 @@
         function pic(data){
             var div_pic = document.createElement("div");
             div_pic.id = "pic";
-            div_pic.style.backgroundImage = "url("+data[5]+")";
+            // div_pic.style.backgroundImage = "url("+data[5]+")";
+            var div_pic_img = document.createElement("img");
+            div_pic_img.id = "img";
+            div_pic_img.src = data[5];
+            div_pic.appendChild(div_pic_img);
             return div_pic;
         }
         function box(data){
